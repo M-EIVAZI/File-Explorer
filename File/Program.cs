@@ -12,7 +12,7 @@ namespace Files
         {
             string @path = Console.ReadLine();
             //string @userpath;
-            int state=0;
+            int state = 0;
             try
             {
                 do
@@ -25,13 +25,18 @@ namespace Files
                         Setdirectory(ref @path);
                         Console.WriteLine("Do you want to explore directories:\n 1.Yes \n 2.NO \n 3.Explore Files");
                         state = int.Parse(Console.ReadLine());
+                        if (state == 3)
+                        { string[] arr = SetFiles(@path);
+                            foreach (var i in arr)
+                                Console.WriteLine(i);
+                        }
                         
                     }
                     else
                         Environment.Exit(0);
                 } while (state == 1);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
 
@@ -44,13 +49,17 @@ namespace Files
             Console.WriteLine("Enter the folder name:");
             string @userpath = Console.ReadLine();
             string[] str = Directory.GetDirectories(@upath + @userpath);
-           /* foreach (var i in str)
-                Console.WriteLine(i);*/
+            /* foreach (var i in str)
+                 Console.WriteLine(i);*/
             @upath = @upath + @userpath;
 
         }
-        
+        public static string[] SetFiles(string @filepath)
+        {
+            string[] str = Directory.GetFiles(filepath, "*.*", SearchOption.TopDirectoryOnly);
+            return str;
+
+        }
+
     }
-
 }
-
