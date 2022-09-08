@@ -67,8 +67,9 @@ namespace Files
         {
             Console.WriteLine("Which File You Want To See:");
             string @file = Console.ReadLine();
-            string str = File.ReadAllText(@filepath+file);
-            Console.WriteLine(str);
+            string []str = File.ReadAllLines(@filepath+file);
+            foreach(var c in str)
+                Console.WriteLine(c);
         }
 
     }
