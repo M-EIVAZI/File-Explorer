@@ -10,8 +10,8 @@ namespace Files
     {
         static void Main()
         {
+            Console.WriteLine("Enter The Path:");
             string @path = Console.ReadLine();
-            //string @userpath;
             int state = 0;
             try
             {
@@ -22,11 +22,15 @@ namespace Files
                         string[] str = Directory.GetDirectories(@path);
                         foreach (var i in str)
                             Console.WriteLine(i);
-                        Setdirectory(ref @path);
                         Console.WriteLine("Do you want to explore directories:\n 1.Yes \n 2.NO \n 3.Explore Files");
                         state = int.Parse(Console.ReadLine());
-                        if (state == 3)
-                        { string[] arr = SetFiles(@path);
+                        if (state == 1)
+                            Setdirectory(ref @path);
+                        else if (state == 2)
+                            Environment.Exit(0);
+                        else if (state == 3)
+                        {
+                            string[] arr = SetFiles(@path);
                             foreach (var i in arr)
                                 Console.WriteLine(i);
                             Console.WriteLine("Do You Want to See Files Insides:\n 1.Yes \n 2.No");
@@ -34,6 +38,8 @@ namespace Files
                             if (state2 == 1)
                                 OpenFile(@path);
                         }
+                        
+                        
                         
                     }
                     else
@@ -56,7 +62,6 @@ namespace Files
             /* foreach (var i in str)
                  Console.WriteLine(i);*/
             @upath = @upath + @userpath;
-
         }
         public static string[] SetFiles(string @filepath)
         {
