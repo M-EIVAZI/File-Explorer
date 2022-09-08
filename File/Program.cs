@@ -29,6 +29,10 @@ namespace Files
                         { string[] arr = SetFiles(@path);
                             foreach (var i in arr)
                                 Console.WriteLine(i);
+                            Console.WriteLine("Do You Want to See Files Insides:\n 1.Yes \n 2.No");
+                            int state2 = int.Parse(Console.ReadLine());
+                            if (state2 == 1)
+                                OpenFile(@path);
                         }
                         
                     }
@@ -56,9 +60,15 @@ namespace Files
         }
         public static string[] SetFiles(string @filepath)
         {
-            string[] str = Directory.GetFiles(filepath, "*.*", SearchOption.TopDirectoryOnly);
+            string[] str = Directory.GetFiles(@filepath, "*.*", SearchOption.TopDirectoryOnly);
             return str;
-
+        }
+        public static void OpenFile(string @filepath)
+        {
+            Console.WriteLine("Which File You Want To See:");
+            string @file = Console.ReadLine();
+            string str = File.ReadAllText(@filepath+file);
+            Console.WriteLine(str);
         }
 
     }
