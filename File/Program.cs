@@ -23,24 +23,29 @@ namespace Files
                         foreach (var i in str)
                             Console.WriteLine(i);
                         Console.WriteLine("Do you want to explore directories:\n 1.Yes \n 2.NO \n 3.Explore Files");
-                        state = int.Parse(Console.ReadLine());
-                        if (state == 1)
-                            Setdirectory(ref @path);
-                        else if (state == 2)
-                            Environment.Exit(0);
-                        else if (state == 3)
+                        state = int.Parse(Console.ReadLine());                        
+                        switch(state)
                         {
-                            string[] arr = SetFiles(@path);
-                            foreach (var i in arr)
-                                Console.WriteLine(i);
-                            Console.WriteLine("Do You Want to See Files Insides:\n 1.Yes \n 2.No");
-                            int state2 = int.Parse(Console.ReadLine());
-                            if (state2 == 1)
-                                OpenFile(@path);
-                        }
-                        
-                        
-                        
+                          case 1:
+                            Setdirectory(ref @path);
+                            break;
+
+                          case 2:
+                            Environment.Exit(0);
+                            break;
+
+                          case 3:
+                            {
+                               string[] arr = SetFiles(@path);
+                               foreach (var i in arr)
+                                   Console.WriteLine(i);
+                               Console.WriteLine("Do You Want to See Files Insides:\n 1.Yes \n 2.No");
+                               int state2 = int.Parse(Console.ReadLine());
+                               if (state2 == 1)
+                                   OpenFile(@path);
+                               break;
+                            }
+                        } 
                     }
                     else
                         Environment.Exit(0);
